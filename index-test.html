@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>El secreto para controlar tu azúcar de noche - TESTE</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .main-headline {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .main-headline h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      color: #111;
+      padding: 0 8px;
+    }
+
+    .main-headline .highlight {
+      color: #E63946;
+    }
+
+    .main-headline p {
+      font-size: 1.125rem;
+      margin-bottom: 32px;
+      color: #555;
+      padding: 0 8px;
+    }
+
+    .main-headline .blue-text {
+      color: #3B82F6;
+    }
+
+    .video-section {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 48px;
+      padding: 0 8px;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      max-width: 768px;
+    }
+
+    .video-container {
+      position: relative;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .video-aspect {
+      padding: 56.25% 0 0 0;
+      position: relative;
+    }
+
+    vturb-smartplayer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      display: block !important;
+      border-radius: 8px;
+    }
+
+    /* TESTE: Forçar exibição do CTA */
+    .cta-test {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .cta-section {
+      text-align: center;
+      margin-bottom: 48px;
+      padding: 0 8px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #6CB04A;
+      color: white;
+      font-weight: bold;
+      font-size: 1.25rem;
+      padding: 16px 32px;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      min-width: 300px;
+    }
+
+    .cta-button:hover {
+      background: #7BC142;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .urgency-section {
+      text-align: center;
+      margin-bottom: 32px;
+      padding: 0 8px;
+    }
+
+    .urgency-box {
+      background: #fef2f2;
+      border: 2px solid #fecaca;
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 576px;
+      margin: 0 auto;
+      color: #991b1b;
+    }
+
+    .urgency-box h3 {
+      font-weight: bold;
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+    }
+
+    .testimonial-section {
+      text-align: center;
+      margin-bottom: 32px;
+      padding: 0 8px;
+    }
+
+    .testimonial-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 512px;
+      margin: 0 auto;
+    }
+
+    .testimonial-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .testimonial-avatar {
+      width: 64px;
+      height: 64px;
+      background: #bfdbfe;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .testimonial-text {
+      text-align: left;
+    }
+
+    .testimonial-quote {
+      color: #1e40af;
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    .testimonial-author {
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+
+    .references-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 48px;
+      padding: 0 8px;
+    }
+
+    .reference-item {
+      text-align: center;
+      padding: 24px;
+      background: #eff6ff;
+      border-radius: 8px;
+      border: 1px solid #e0e7ff;
+    }
+
+    .reference-icon {
+      font-size: 1.875rem;
+      margin-bottom: 12px;
+    }
+
+    .reference-title {
+      font-weight: 600;
+      color: #1e40af;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .reference-desc {
+      color: #2563eb;
+      font-size: 0.875rem;
+    }
+
+    .guarantee-section {
+      margin-top: 48px;
+      display: flex;
+      justify-content: center;
+      padding: 0 8px;
+    }
+
+    .guarantee-box {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 32px;
+      max-width: 384px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .guarantee-icon {
+      font-size: 2.25rem;
+      margin-bottom: 16px;
+    }
+
+    .guarantee-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #166534;
+      margin-bottom: 8px;
+    }
+
+    .guarantee-text {
+      color: #15803d;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .guarantee-features {
+      margin-top: 16px;
+      font-size: 0.75rem;
+      color: #16a34a;
+      font-weight: 500;
+    }
+
+    .debug-info {
+      background: #f0f0f0;
+      padding: 10px;
+      margin: 20px 0;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    @keyframes fadeIn {
+      from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 32px 16px;
+      }
+
+      .main-headline h1 {
+        font-size: 3rem;
+      }
+
+      .main-headline p {
+        font-size: 1.25rem;
+      }
+
+      .video-section {
+        margin-bottom: 64px;
+      }
+
+      .cta-section {
+        margin-bottom: 64px;
+      }
+
+      .testimonial-content {
+        flex-direction: row;
+      }
+
+      .testimonial-text {
+        text-align: left;
+      }
+
+      .references-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .guarantee-box {
+        max-width: 448px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .main-headline h1 {
+        font-size: 3.75rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Debug Info -->
+    <div class="debug-info">
+      <strong>TESTE DE BOTÃO:</strong> O botão deve aparecer imediatamente abaixo do vídeo.
+    </div>
+
+    <!-- Main Headline -->
+    <div class="main-headline">
+      <h1>
+        El secreto para controlar tu azúcar de noche — que las grandes farmacéuticas preferirían mantener 
+        <span class="highlight">oculto</span>.
+      </h1>
+      <p>
+        Un simple hábito casero que ayuda a tu hígado a liberar menos azúcar mientras duermes — 
+        <span class="blue-text">sin pastillas</span> ni efectos secundarios.
+      </p>
+    </div>
+
+    <!-- Video Section -->
+    <div class="video-section">
+      <div class="video-wrapper">
+        <div class="video-container">
+          <div class="video-aspect">
+            <vturb-smartplayer 
+              id="vid-685f7df11360073ec94270cb" 
+              style="display: block; margin: 0 auto; width: 100%;">
+            </vturb-smartplayer>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section - TESTE: SEMPRE VISÍVEL -->
+    <div class="cta-test">
+      <div class="cta-section">
+        <a href="https://pay.hotmart.com/A100534018K" class="cta-button" target="_blank">
+          QUIERO ACABAR CON LA DIABETES
+        </a>
+      </div>
+
+      <!-- Urgency Section -->
+      <div class="urgency-section">
+        <div class="urgency-box">
+          <h3>⚠️ OFERTA POR TIEMPO LIMITADO</h3>
+          <p>
+            Esta página se cerrará automáticamente en <strong>24 horas</strong>. No pierdas esta oportunidad única.
+          </p>
+        </div>
+      </div>
+
+      <!-- Testimonial Section -->
+      <div class="testimonial-section">
+        <div class="testimonial-box">
+          <div class="testimonial-content">
+            <div class="testimonial-avatar">👨‍⚕️</div>
+            <div class="testimonial-text">
+              <p class="testimonial-quote">
+                "He visto resultados increíbles en mis pacientes que siguen este protocolo. Es una alternativa natural muy efectiva."
+              </p>
+              <p class="testimonial-author">- Dr. Carlos Mendoza, Endocrinólogo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- University References -->
+    <div class="references-grid">
+      <div class="reference-item">
+        <div class="reference-icon">🎓</div>
+        <h3 class="reference-title">Harvard Medical</h3>
+        <p class="reference-desc">Estudios confirman la efectividad del método</p>
+      </div>
+
+      <div class="reference-item">
+        <div class="reference-icon">🏥</div>
+        <h3 class="reference-title">Mayo Clinic</h3>
+        <p class="reference-desc">Investigación respalda los resultados</p>
+      </div>
+
+      <div class="reference-item">
+        <div class="reference-icon">🔬</div>
+        <h3 class="reference-title">Stanford University</h3>
+        <p class="reference-desc">Validación científica del protocolo</p>
+      </div>
+    </div>
+
+    <!-- Guarantee Section -->
+    <div class="guarantee-section">
+      <div class="guarantee-box">
+        <div class="guarantee-icon">🛡️</div>
+        <h3 class="guarantee-title">Garantía de 60 Días</h3>
+        <p class="guarantee-text">
+          Si no ves resultados en los primeros 60 días, te devolvemos el 100% de tu dinero. Sin preguntas.
+        </p>
+        <div class="guarantee-features">
+          ✓ Garantía Total • ✓ Sin Riesgo • ✓ 100% Seguro
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Player Script -->
+  <script type="text/javascript">
+    console.log("Iniciando carregamento do player...");
+    
+    try {
+      var s = document.createElement("script");
+      s.src = "https://scripts.converteai.net/7e36cdf6-8f2d-4adf-9c73-eb7c42755be9/players/685f7df11360073ec94270cb/v4/player.js";
+      s.async = true;
+      s.onerror = function() {
+        console.error('Failed to load video player script');
+      };
+      s.onload = function() {
+        console.log('Video player loaded successfully');
+      };
+      document.head.appendChild(s);
+    } catch (error) {
+      console.error('Error loading video player:', error);
+    }
+
+    // Debug: Verificar se o botão está visível
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log("DOM carregado");
+      
+      var ctaElement = document.querySelector('.cta-test');
+      if (ctaElement) {
+        console.log("Elemento CTA encontrado:", ctaElement);
+        console.log("Display:", window.getComputedStyle(ctaElement).display);
+        console.log("Visibility:", window.getComputedStyle(ctaElement).visibility);
+      } else {
+        console.error("Elemento CTA NÃO encontrado!");
+      }
+    });
+  </script>
+</body>
+</html>
