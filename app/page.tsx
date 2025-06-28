@@ -4,23 +4,23 @@ export default function VSLPage() {
   return (
     <>
       <Script
-        id="vturb-sdk-script"
+        id="vturb-player-script"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             try {
               var s = document.createElement("script");
-              s.src = "https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js";
+              s.src = "https://scripts.converteai.net/7e36cdf6-8f2d-4adf-9c73-eb7c42755be9/players/685f7df11360073ec94270cb/v4/player.js";
               s.async = true;
               s.onerror = function() {
-                console.error('Failed to load video SDK script');
+                console.error('Failed to load video player script');
               };
               s.onload = function() {
-                console.log('Video SDK loaded successfully');
+                console.log('Video player loaded successfully');
               };
               document.head.appendChild(s);
             } catch (error) {
-              console.error('Error loading video SDK:', error);
+              console.error('Error loading video player:', error);
             }
           `,
         }}
@@ -35,26 +35,24 @@ export default function VSLPage() {
             var delaySeconds = 1860;
             
             function initializeVideoDelay() {
-              // Aguardar o iframe carregar completamente
-              var iframe = document.getElementById('ifr_685f7df11360073ec94270cb');
+              // Aguardar o player carregar completamente
+              var player = document.getElementById('vid-685f7df11360073ec94270cb');
               
-              if (iframe) {
-                iframe.addEventListener('load', function() {
-                  console.log("Video iframe loaded, setting up delay for CTA");
-                  
-                  // Usar setTimeout como fallback para mostrar CTA após 31 minutos
-                  setTimeout(function() {
-                    var ctaElements = document.querySelectorAll('.cta-esconder');
-                    ctaElements.forEach(function(el) {
-                      el.style.display = 'block';
-                      el.classList.remove('cta-esconder');
-                      el.style.animation = 'fadeIn 0.5s ease-in';
-                    });
-                    console.log("CTA elements displayed after delay");
-                  }, delaySeconds * 1000);
-                });
+              if (player) {
+                console.log("Video player found, setting up delay for CTA");
+                
+                // Usar setTimeout para mostrar CTA após 31 minutos
+                setTimeout(function() {
+                  var ctaElements = document.querySelectorAll('.cta-esconder');
+                  ctaElements.forEach(function(el) {
+                    el.style.display = 'block';
+                    el.classList.remove('cta-esconder');
+                    el.style.animation = 'fadeIn 0.5s ease-in';
+                  });
+                  console.log("CTA elements displayed after delay");
+                }, delaySeconds * 1000);
               } else {
-                // Retry after 1 second if iframe not found
+                // Retry after 1 second if player not found
                 setTimeout(initializeVideoDelay, 1000);
               }
             }
@@ -65,6 +63,11 @@ export default function VSLPage() {
               @keyframes fadeIn {
                 from { opacity: 0; transform: translateY(20px); }
                 to { opacity: 1; transform: translateY(0); }
+              }
+              vturb-smartplayer {
+                display: block !important;
+                width: 100% !important;
+                height: 100% !important;
               }
             \`;
             document.head.appendChild(style);
@@ -80,36 +83,24 @@ export default function VSLPage() {
       />
 
       <Script
-        id="iframe-loader"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            // Load the iframe source after the page loads
-            function loadIframe() {
-              var iframe = document.getElementById('ifr_685f7df11360073ec94270cb');
-              if (iframe && iframe.src === 'about:blank') {
-                var search = window.location.search || '?';
-                var vl = encodeURIComponent(window.location.href);
-                iframe.src = 'https://scripts.converteai.net/7e36cdf6-8f2d-4adf-9c73-eb7c42755be9/players/685f7df11360073ec94270cb/v4/embed.html' + search + '&vl=' + vl;
-              }
-            }
-            
-            if (document.readyState === 'loading') {
-              document.addEventListener('DOMContentLoaded', loadIframe);
-            } else {
-              loadIframe();
-            }
-          `,
-        }}
-      />
-
-      <Script
-        id="meta-pixel"
+        id="meta-pixel-1"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '1064652811780217');
+            fbq('track', 'PageView');
+          `,
+        }}
+      />
+
+      <Script
+        id="meta-pixel-2"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '24289688470655165');
             fbq('track', 'PageView');
           `,
         }}
@@ -121,6 +112,13 @@ export default function VSLPage() {
           width="1"
           style={{ display: "none" }}
           src="https://www.facebook.com/tr?id=1064652811780217&ev=PageView&noscript=1"
+          alt=""
+        />
+        <img
+          height="1"
+          width="1"
+          style={{ display: "none" }}
+          src="https://www.facebook.com/tr?id=24289688470655165&ev=PageView&noscript=1"
           alt=""
         />
       </noscript>
@@ -147,25 +145,20 @@ export default function VSLPage() {
           <div className="flex justify-center mb-8 md:mb-12 px-2">
             <div className="w-full max-w-3xl">
               <div className="relative bg-black rounded-lg overflow-hidden shadow-xl md:shadow-2xl">
-                <div id="ifr_685f7df11360073ec94270cb_wrapper" style={{ margin: "0 auto", width: "100%" }}>
-                  <div
-                    style={{ padding: "56.25% 0 0 0", position: "relative" }}
-                    id="ifr_685f7df11360073ec94270cb_aspect"
-                  >
-                    <iframe
-                      frameBorder="0"
-                      allowFullScreen
-                      src="about:blank"
-                      id="ifr_685f7df11360073ec94270cb"
+                <div className="video-container" style={{ margin: "0 auto", width: "100%" }}>
+                  <div style={{ padding: "56.25% 0 0 0", position: "relative" }} className="video-aspect-ratio">
+                    <vturb-smartplayer
+                      id="vid-685f7df11360073ec94270cb"
                       style={{
                         position: "absolute",
                         top: 0,
                         left: 0,
                         width: "100%",
                         height: "100%",
+                        display: "block",
+                        margin: "0 auto",
                         borderRadius: "8px",
                       }}
-                      referrerPolicy="origin"
                     />
                   </div>
                 </div>
